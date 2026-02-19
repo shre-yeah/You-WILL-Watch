@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>You WILL Watch</title>
+  <style>
+    body {
+      width: 320px;
+      padding: 0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(#5b61b2, #b26eab 70%);
+      color: #eee2df;
+      justify-content: center;
+      display: flex;
+      align-items: center;
+      
+    }
+
+    .container {
+      padding: 20px;
+      justify-content: center;
+      display:table-column;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .status
+    {
+        color:#611584;
+        font-size: medium;
+        margin: 16px;
+        align-items: center;
+        justify-content: flex-end;
+      
+    }
+
+    .stats-section {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .mode-section {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .mode-section h2 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+    }
+
+    .mode-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(124, 41, 183, 0.349);
+      color: #eee2df;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      transition: all 0.2s;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .mode-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .mode-btn.active {
+      background: rgba(255, 255, 255, 0.3);
+      border-color: #eee2df
+    }
+
+    .strict-settings {
+      display: none;
+      margin-top: 12px;
+    }
+
+    .strict-settings.show {
+      display: block;
+    }
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .activate-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: #eee2df;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .activate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .reset-btn {
+      width: 100%;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      color: #eee2df;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .reset-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .status {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      
+      font-size: 12px;
+      margin-top: 12px;
+      padding: 8px;
+      background: rgba(220, 199, 228, 0.238);
+      border-radius: 6px;
+    }
+
+    .locked-message {
+      background: rgba(255, 68, 68, 0.3);
+      border: 2px solid rgba(255, 68, 68, 0.5);
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+    img
+    {
+        border-radius: 15px;
+        position: center;
+        box-shadow: 3px 3px 15px 5px #611584;
+        
+    }
+    .logo
+    {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+
+    /* The Switch Container */
+    .switch-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .switch input { opacity: 0; width: 0; height: 0; }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #bbcde4;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: #6da0e1;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider { background-color :#b26eab }
+    input:checked + .slider:before { transform: translateX(26px);
+                                        background-color :#eee2df;
+                                     }
+
+    
+  </style>
+</head>
+
+<body>
+    
+    <div class="container">
+
+        <div class="switch-container">
+            <span style="font-weight:bold">Enable Extension</span>
+            <label class="switch">
+            <input type="checkbox" id="global-toggle" checked>
+            <span class="slider"></span>
+            </label>
+        </div>
+
+
+        <div class="logo" > <img src = 'icon200.png' > </div>
+
+        <div class="status">
+            <h3>Current Mode</h3>
+            <div id="status">Active</div>
+        </div>
+        
+        
+        <div class="stats-section">
+        <div class="stat-row">
+            <span class="stat-label">Pauses Today:</span>
+            <span class="stat-value" id="pause-count">-</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Tab Switches:</span>
+            <span class="stat-value" id="tab-switches">-</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Focus Time:</span>
+            <span class="stat-value" id="focus-time">-</span>
+        </div>
+        </div>
+
+        <div id="locked-indicator" class="locked-message" style="display: none;">
+        Strict Mode Locked
+        <div id="time-remaining" style="font-size: 11px; margin-top: 4px;">-</div>
+        </div>
+
+        <div class="mode-section">
+        <h2>Select Mode</h2>
+        <div class="mode-buttons">
+            <button class="mode-btn" id="safe-btn">Safe Mode</button>
+            <button class="mode-btn" id="strict-btn">Strict Mode</button>
+        </div>
+
+        <div class="strict-settings" id="strict-settings">
+            <div class="input-group">
+            <label for="duration-input">Lock Duration (minutes):</label>
+            <input type="number" id="duration-input" min="1" max="480" value="60" placeholder="60">
+            </div>
+            <button class="activate-btn" id="activate-strict">Activate Strict Mode</button>
+        </div>
+        </div>
+
+        <button class="reset-btn" id="reset-btn">Reset Today's Stats</button>
+
+        <div class="status" id="status"></div>
+    </div>
+
+
+  <script src="popup.js"></script>
+</body>
+</html>

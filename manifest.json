@@ -1,0 +1,47 @@
+{
+
+    "manifest_version": 3,
+    "version": "1.0",
+    "name" : "YouWillWatch",
+    "description": "Force yourself to finish the youtube videos with pause button disabler. A fun and slightly annoying extension to help you get your work on youtube done!",
+    "permissions": [
+        "storage",
+        "tabs",
+        "alarms",
+        "notifications"
+    ],
+    "host_permissions" : [
+        "*://*.youtube.com/*"
+    ],
+     "background" : { 
+        "service_worker": "background.js"
+
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.youtube.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "overlay.css"
+            ],
+            "run_at" : "document_end"
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    }
+    },
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+  }
+}
