@@ -1,0 +1,100 @@
+:root {
+  /* Core Background & Surfaces */
+  --bg: linear-gradient(#5b61b2, #b26eab 70%);           /* Light pastel for the main page background */
+  --card: #e2b4de;           /* Keeping the card white for readability */
+  
+  /* Brand Accents */
+  --accent: #5b61b2;         /* Pastel blue/purple for primary buttons */
+  --accent-secondary: #964c8f; /* Pinkish purple for links and muted text */
+  --text-main: #611584;      /* Deep purple for the main text to ensure good contrast */
+  --muted: #903487;          /* Soft pink/purple for secondary information */
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.card {
+  max-width: 710px;  
+  margin: 6vh auto;
+  padding: 60px;
+  border-radius: 12px;
+  background: var(--card);
+  /* Tinted the shadow slightly with your dark purple for harmony */
+  box-shadow: 0 6px 18px rgba(97, 21, 132, 0.08); 
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 16px;
+  margin-top: 18px;
+}
+
+.lead {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+ul,
+ol {
+  margin: 8px 0 12px 20px;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.primary {
+  background: var(--accent);
+  color: white;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.primary:hover {
+  background: var(--text-main); /* Darkens to the deep purple on hover */
+}
+
+.link {
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--text-main); /* Darkens to the deep purple on hover */
+}
+
+.status {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+  .card {
+    margin: 4vh 16px;
+    padding: 18px;
+  }
+}

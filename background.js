@@ -19,9 +19,9 @@ const Roastmessages = [
 
 
 // Listen for extension installation
-chrome.runtime.onInstalled.addListener(() => {
-  console.log('You WILL Watch is installed successfully!');
-  
+chrome.runtime.onInstalled.addListener((details) => {
+  console.log('You WILL Watch on Installed event:', details);
+
   // Initialize storage
   chrome.storage.local.set({
     stats: {
@@ -32,9 +32,19 @@ chrome.runtime.onInstalled.addListener(() => {
     },
     mode: 'safe'
   });
-    // Check daily for stats reset
-    chrome.alarms.create('dailyReset', { periodInMinutes: 60 });
-    chrome.alarms.create('checkStrictMode', { periodInMinutes: 1 });
+
+  // Open onboarding page only on a fresh install and if not seen before
+  if (details && details.reason === 'install') {
+    chrome.storage.local.get(['onboardSeen'], (res) => {
+      if (!res.onboardSeen) {
+        chrome.tabs.create({ url: chrome.runtime.getURL('onboarding.html') });
+      }
+    });
+  }
+
+  // Check daily for stats reset
+  chrome.alarms.create('dailyReset', { periodInMinutes: 60 });
+  chrome.alarms.create('checkStrictMode', { periodInMinutes: 1 });
 });
 
 
