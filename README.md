@@ -16,3 +16,10 @@ There are two modes as per your required needs.
 Its a very annoying extension, I understand. So you can enable and disable the extension as per your needs. But hey anything for accountability and actually being able to finish your videos right?
 
 Cheers!
+
+Installation Guide! Because this isn't on Google Webstore yet.
+1) Simply clone this repository wherever you like
+2) Go to https://chrome/extensions
+3) Toggle Developer mode on
+4) Click Load Unpacked and select the folder where you cloned the repo in
+
