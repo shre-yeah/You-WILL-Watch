@@ -22,4 +22,6 @@ Installation Guide! Because this isn't on Google Webstore yet.
 2) Go to https://chrome/extensions
 3) Toggle Developer mode on
 4) Click Load Unpacked and select the folder where you cloned the repo in
+5) The extension will be ready to use
+6) Oh you can also just download the zip folder directly. LOL.
 
